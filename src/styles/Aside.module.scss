@@ -1,0 +1,122 @@
+.container {
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  font-family: 'Lato', sans-serif;
+  // transition: 300ms;
+}
+
+
+.clickCatcher {
+  flex: 1 1 auto;
+  z-index: 20;
+}
+
+
+// @media screen and (min-width: 768px) {
+//   .aside {
+//     flex: 0 0 400px;
+//   }
+// }
+
+.dragger {
+  height: 100%;
+  width: 8px;
+  position: absolute;
+  top: 0;
+  right: -6px;
+  cursor: col-resize !important;
+}
+
+.aside {
+  z-index: 40;
+  flex: 1 1 auto;
+  height: 100%;
+  padding: 18px 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  transform: translate3d(calc(-100% + 2px), 0, 0);
+  width: 400px;
+  min-width: 300px;
+  position: fixed;
+  border-right: 2px solid #0ebb4b;
+  transition: transform 300ms cubic-bezier(.7,0,.3,1);
+  -webkit-user-select: none; /* Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+  .top {
+    color: white;
+    display: grid;
+    grid-template-columns: 5fr 5fr 2fr;
+    padding: 0 0 12px 18px;
+  }
+
+  .songBox {
+    display: grid;
+    grid-template-columns: 5fr 5fr 2fr;
+    align-items: center;
+    height: 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    padding-left: 18px;
+    cursor: default;
+
+
+    div {
+      display: block;
+    }
+
+    span {
+      display:inline-block;
+      max-width: 125px; // Change this dynamically javascript code
+      text-overflow: ellipsis;
+      overflow: hidden; 
+      white-space: nowrap;
+    }
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+  .songBox:first-of-type {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  .active {
+    color: #0ebb4b;
+  }
+}
+.asideBtn {
+  z-index: 20;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  top: 61px;
+  right: -50px;
+  color: #0ebb4b;
+  border: 2px solid #0ebb4b;
+  display: grid;
+  place-items: center;
+  transition: transform 200ms;
+  transform-origin: left;
+  &:hover {
+    transform: scale3d(0.96,0.96,0.96);
+  }
+  &:active {
+    transform: scale3d(0.92,0.92,0.92);
+  }
+  svg {
+    transition: 200ms;
+  }
+}
+// .aside::after {
+//   position: absolute;
+//   width: 40px;
+//   height: 40px;
+//   content: "POG";
+//   top: 0;
+//   right: -40px;
+//   color: green;
+// }

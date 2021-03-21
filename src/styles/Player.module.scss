@@ -1,0 +1,297 @@
+.container {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  bottom: 0;
+  height: 138px;
+  z-index: 30;
+}
+
+.btnsBox {
+  width: 250px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: rgb(180, 180, 180);
+  .iconBox {
+    padding: 6px;
+    &:hover {
+      color: white;
+    }
+  }
+  .skipIcon {
+    font-size: 1.2em;
+    &:active {
+      transform: scale3d(0.94,0.94,0.94);
+    }
+  }
+  .playIcon {
+    font-size: 2.2em;
+    &:hover {
+      color: white;
+    }
+    &:active {
+      transform: scale(0.96,0.96)
+    }
+  }
+}
+
+.trackContainer {
+  display: flex;
+  width: 50%;
+  height: 30px;
+  align-items: center;
+
+  .time {
+    color: white;
+    margin: 0 20px;
+    cursor: default;
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+    font-size: 14px;
+    font-family: 'Lato', sans-serif;
+  }
+
+  .trackWrapper {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background: transparent;
+    width: 100%;
+    height: 100%;
+
+    input {
+      width: 100%;
+      -webkit-appearance: none;
+      background-color: transparent;
+      height: 100%;
+      position: absolute;
+    }
+  
+    input[type="range"]:focus {
+      outline: none;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 16px;
+      width: 16px;
+    }
+    input[type="range"]::-moz-range-thumb {
+      -webkit-appearance: none;
+      background: transparent;
+      border: none;
+    }
+  
+    .trackBox {
+      position: relative;
+      width: 100%;
+      margin: 0 4px;
+      pointer-events: none;
+
+      .innerTrackBox {
+        width: 100%;
+        height: 6px;
+        overflow: hidden;
+        border-radius: 12px;
+        pointer-events: none;
+
+        .fillTrack {
+          position: absolute;
+          background: rgb(29, 29, 29);
+          width: 100%;
+          height: 6px;
+          top: 50%;
+          transform: translate(0, -50%);
+          border-radius: 12px;
+          pointer-events: none;
+          z-index: 2;
+        }
+
+        .animateTrackFill {
+          position: relative;
+          width: 100%;
+          height: 6px;
+          background-color: rgb(180, 180, 180);
+          transform: translate3d(-50%, 0, 0);
+          border-radius: 12px;
+          pointer-events: none;
+          z-index: 3;
+        }
+
+        .animateTrack {
+          position: absolute;
+          width: 100%;
+          height: 6px;
+          top: 50%;
+          transform: translate3d(-50%, -50%, 0);
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          pointer-events: none;
+          z-index: 3;
+
+          .circle {
+            display: none;
+            position: fixed;
+            right: -7px;
+            width: 14px;
+            height: 14px;
+            background-color: rgb(250, 250, 250);
+            border-radius: 100%;
+            pointer-events: none;
+            z-index: 100;
+          }
+
+        }
+      }
+    }
+  }
+  &:hover .trackWrapper .trackBox .innerTrackBox .animateTrackFill {
+    background: #0ebb4b;
+  }
+  &:hover .trackWrapper .trackBox .innerTrackBox .animateTrack .circle {
+    display: block;
+  }
+}
+
+
+.volumeContainer {
+  position: absolute;
+  display: flex;
+  width: 140px;
+  height: 30px;
+  align-items: center;
+  bottom: 61px;
+  right: 160px;
+
+
+  .volumeIconBox {
+    min-width: 32px !important;
+    padding: 6px;
+    display: flex;
+    justify-content: flex-start;
+    color: rgb(180, 180, 180);
+    svg {
+      font-size: 1.5em;
+    }
+    &:hover {
+      color: white;
+    }
+    &:active {
+      color: rgb(180, 180, 180);
+    }
+  }
+
+
+
+  .volumeWrapper {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background: transparent;
+    width: 100%;
+    height: 100%;
+    margin-left: 4px;
+    
+    input {
+      width: 100%;
+      -webkit-appearance: none;
+      background-color: transparent;
+      height: 100%;
+      position: absolute;
+      z-index: 30;
+    }
+    
+    input[type="range"]:focus {
+      outline: none;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 16px;
+      width: 16px;
+    }
+    input[type="range"]::-moz-range-thumb {
+      -webkit-appearance: none;
+      background: transparent;
+      border: none;
+    }
+    
+    .volumeBox {
+      position: relative;
+      width: 100%;
+      margin: 0 4px;
+      pointer-events: none;
+  
+      .innerVolumeBox {
+        width: 100%;
+        height: 6px;
+        overflow: hidden;
+        border-radius: 12px;
+        pointer-events: none;
+  
+        .fillVolume {
+          position: absolute;
+          background: rgb(29, 29, 29);
+          width: 100%;
+          height: 6px;
+          top: 50%;
+          transform: translate(0, -50%);
+          border-radius: 12px;
+          pointer-events: none;
+          z-index: 2;
+        }
+  
+        .animateVolumeFill {
+          position: relative;
+          width: 100%;
+          height: 6px;
+          background-color: rgb(180, 180, 180);
+          transform: translate3d(-50%, 0, 0);
+          border-radius: 12px;
+          pointer-events: none;
+          z-index: 3;
+        }
+  
+        .animateVolume {
+          position: absolute;
+          width: 100%;
+          height: 6px;
+          top: 50%;
+          transform: translate3d(-50%, -50%, 0);
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          pointer-events: none;
+          z-index: 3;
+  
+          .volumeCircle {
+            display: none;
+            position: fixed;
+            right: -7px;
+            width: 14px;
+            height: 14px;
+            background-color: rgb(250, 250, 250);
+            border-radius: 100%;
+            pointer-events: none;
+            z-index: 100;
+          }
+  
+        }
+      }
+    }
+    &:hover .volumeBox .innerVolumeBox .animateVolume .volumeCircle {
+      display: block;
+    }
+  }
+  &:hover .volumeWrapper .volumeBox .innerVolumeBox .animateVolumeFill {
+    background: #0ebb4b;
+  }
+}
