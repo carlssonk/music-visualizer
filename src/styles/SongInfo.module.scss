@@ -117,3 +117,34 @@
   }
 }
 
+// Media Queries
+
+@media all and (max-width: 1550px) {
+  .nameBox {
+    right: 20px;
+  }
+}
+
+@media all and (max-width: 850px) {
+  .nameBox {
+    right: 8px;
+    top: 8px;
+  }
+}
+
+@media all and (max-width: 720px) {
+
+  .currentlyPlaying {
+    display: none;
+  }
+  .nameBox {
+    right: 0px;
+    top: 0px;
+  }
+}
+
+@media all and (max-height: 720px) {
+  .container {
+    top: calc(50% + 40px)
+  }
+}

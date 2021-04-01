@@ -41,8 +41,12 @@
 }
 
 .trackContainer {
+  position: relative;
   display: flex;
-  width: 50%;
+  width: 100%;
+  justify-content: center;
+  // width: 50%;
+  padding: 0 240px;
   height: 30px;
   align-items: center;
 
@@ -64,7 +68,10 @@
     justify-content: flex-start;
     align-items: center;
     background: transparent;
-    width: 100%;
+    max-width: 750px;
+    flex: 1;
+    // min-width: 100%;
+    // width: 1200px;
     height: 100%;
 
     input {
@@ -293,5 +300,39 @@
   }
   &:hover .volumeWrapper .volumeBox .innerVolumeBox .animateVolumeFill {
     background: #0ebb4b;
+  }
+}
+
+
+
+
+// Media queries
+
+@media all and (max-width: 1550px) {
+  .volumeContainer {
+    right: 80px;
+  }
+}
+
+@media all and (max-width: 1400px) {
+  .volumeContainer {
+    right: 80px;
+  }
+}
+
+@media all and (max-width: 1024px) {
+
+  .trackContainer {
+    padding: 0 140px;
+  }
+
+  .volumeContainer {
+    display: none;
+  }
+}
+
+@media all and (max-width: 850px) {
+  .trackContainer {
+    padding: 0 20px;
   }
 }

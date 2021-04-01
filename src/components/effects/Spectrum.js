@@ -116,7 +116,7 @@ class Spectrum extends Component {
     // Center Circle
     let centerX = canvas.width / 2;
     let centerY = canvas.height / 2 - 100;
-    const radius = 140;
+    let radius; // define circle radius
 
     // Make spectrum responsive
     window.onresize = function() {
@@ -125,8 +125,19 @@ class Spectrum extends Component {
 
       centerX = canvas.width / 2;
       centerY = canvas.height / 2 - 100;
+
+      // mediaQueryCircleSize();
     };
 
+    // function mediaQueryCircleSize() {
+    //   if(window.innerWidth < 500) {
+
+    //     document.documentElement.style.setProperty(
+    //       '--image-width', ((radius+100) + lowAvgFreq/(circleJumper/2)) + "px"
+    //     )
+
+    //   }
+    // }
 
 
     // #####################################
@@ -138,6 +149,7 @@ class Spectrum extends Component {
     let barHeight
     let circleJumper = 500; // Lower value will make spectrum radius jump/scale more
     let circleRotation = 1.57 * 3;
+
 
     // ####################################
     // ########## ANIMATION LOOPER ########
@@ -165,11 +177,39 @@ class Spectrum extends Component {
       ctx.lineWidth = barWidth;
 
 
+      // ##########################################
+      // ######### CIRCLE MEDIA QUERIES ###########
+      // ##########################################
 
 
+      // circle radius
+      radius = 140;
+      // image radius
       document.documentElement.style.setProperty(
         '--image-width', ((radius+140) + lowAvgFreq/(circleJumper/2)) + "px"
       )
+
+      if(window.innerWidth < 500) {
+        // Change Image radius
+        document.documentElement.style.setProperty(
+          '--image-width', ((radius+100) + lowAvgFreq/(circleJumper/2)) + "px"
+        )
+        // Change Spectrum Radius
+        radius = 100;
+      }
+
+      if(window.innerWidth < 400) {
+        // Change Image radius
+        document.documentElement.style.setProperty(
+          '--image-width', ((radius+80) + lowAvgFreq/(circleJumper/2)) + "px"
+        )
+        // Change Spectrum Radius
+        radius = 80;
+      }
+
+      if(window.innerHeight < 720) {
+        centerY = canvas.height / 2 - 60;
+      }
 
 
       for(var i = 0; i < bufferLength - 85; i++){ // - 85 because the low frequencies does not pick up for most songs
