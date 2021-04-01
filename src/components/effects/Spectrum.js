@@ -15,7 +15,10 @@ class Spectrum extends Component {
 
 
   componentDidUpdate() {
-    this.initAnalyser();
+    // Make sure we have a user interaction before building the analyser
+    if(this.props.isPlaying) {
+      this.initAnalyser();
+    }
   }
 
 
