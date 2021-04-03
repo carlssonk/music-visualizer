@@ -332,6 +332,9 @@
 }
 
 @media all and (max-width: 850px) {
+  .container {
+    height: 100px;
+  }
   .trackContainer {
     padding: 0 20px;
   }

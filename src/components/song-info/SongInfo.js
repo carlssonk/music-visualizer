@@ -62,7 +62,6 @@ function SongInfo({currentSong}) {
     <>
     <div className={StyledSongInfo.container}>
       <div className={StyledSongInfo.imageBox}>
-        <div className={StyledSongInfo.imageOverlay}></div>
         <img className={StyledSongInfo.image} src={NCS} alt="album_cover"/>
       </div>
     </div>

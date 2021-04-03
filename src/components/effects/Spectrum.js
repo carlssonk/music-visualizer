@@ -8,10 +8,12 @@ class Spectrum extends Component {
     this.canvasRef = React.createRef(null)
 
     this.state = {
-      buildAnalyser: false
+      buildAnalyser: false,
+      toggleHeight: false,
     }
 
   }
+
 
 
   componentDidUpdate() {
@@ -20,6 +22,7 @@ class Spectrum extends Component {
       this.initAnalyser();
     }
   }
+
 
 
   initAnalyser = () => {
@@ -75,14 +78,13 @@ class Spectrum extends Component {
       if (dots.length > 150) { return; }
       dots.push({
       xp:  canvas.width/2,
-      yp:  canvas.height/2 - 100,
+      yp:  centerY,
       xv:  Math.random()*0.4-0.2,
       yv:  Math.random()*0.4-0.2,
       rad: Math.random()*(15-2)+2,
       hue: Math.random()*50-25
       });
     }
-    setInterval(emitDot, 50)
 
 
     function drawDots(){
@@ -118,29 +120,45 @@ class Spectrum extends Component {
 
     // Center Circle
     let centerX = canvas.width / 2;
-    let centerY = canvas.height / 2 - 100;
-    let radius; // define circle radius
+    let centerY = canvas.height / 2;
+    let radius = 140; // define circle radius
+
+    let mobileTopWhiteSpace = 28;
+    let initialWindowHeight = window.innerHeight;
+
+
 
     // Make spectrum responsive
     window.onresize = function() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-
       centerX = canvas.width / 2;
-      centerY = canvas.height / 2 - 100;
 
-      // mediaQueryCircleSize();
+      mediaQuerySpectrumCenter()
+      
+      // If we are on mobile browser, we will have a top whitespace pf 28 or 56/2px
+      if(window.orientation !== undefined) {
+        if(window.innerHeight === initialWindowHeight) {
+          centerY = (canvas.height / 2 - 20)
+        } else {
+          centerY = (canvas.height / 2 - 20) - mobileTopWhiteSpace;
+        }
+      }
+
     };
 
-    // function mediaQueryCircleSize() {
-    //   if(window.innerWidth < 500) {
 
-    //     document.documentElement.style.setProperty(
-    //       '--image-width', ((radius+100) + lowAvgFreq/(circleJumper/2)) + "px"
-    //     )
+    mediaQuerySpectrumCenter()
+    function mediaQuerySpectrumCenter() {
+      if(window.innerWidth <= 850) {
+        centerY = canvas.height / 2 - 20;
+      }  else if(window.innerHeight <= 800) { 
+        centerY = canvas.height / 2 - 50;
+      } else {
+        centerY = canvas.height / 2 - 100;
+      }
+    }
 
-    //   }
-    // }
 
 
     // #####################################
@@ -152,6 +170,9 @@ class Spectrum extends Component {
     let barHeight
     let circleJumper = 500; // Lower value will make spectrum radius jump/scale more
     let circleRotation = 1.57 * 3;
+
+    // Start dots
+    setInterval(emitDot, 50)
 
 
     // ####################################
@@ -172,9 +193,10 @@ class Spectrum extends Component {
       let lowAvgFreq = lowAverageFrequency();
       
       // //  Circle
-      // ctx.beginPath();
-      // ctx.arc(centerX,centerY,(radius + lowAvgFreq/circleJumper),0,2*Math.PI);
-      // ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(centerX,centerY,(radius + lowAvgFreq/circleJumper),0,2*Math.PI);
+      ctx.stroke();
+      ctx.globalCompositeOperation='destination-over';
 
       // Lines
       ctx.lineWidth = barWidth;
@@ -192,26 +214,22 @@ class Spectrum extends Component {
         '--image-width', ((radius+140) + lowAvgFreq/(circleJumper/2)) + "px"
       )
 
-      if(window.innerWidth < 500) {
+      if(window.innerWidth <= 850) {
         // Change Image radius
         document.documentElement.style.setProperty(
-          '--image-width', ((radius+100) + lowAvgFreq/(circleJumper/2)) + "px"
+          '--image-width', ((radius+65) + lowAvgFreq/(circleJumper/2)) + "px"
         )
         // Change Spectrum Radius
         radius = 100;
       }
 
-      if(window.innerWidth < 400) {
+      if(window.innerWidth <= 500) {
         // Change Image radius
         document.documentElement.style.setProperty(
-          '--image-width', ((radius+80) + lowAvgFreq/(circleJumper/2)) + "px"
+          '--image-width', ((radius+60) + lowAvgFreq/(circleJumper/2)) + "px"
         )
         // Change Spectrum Radius
         radius = 80;
-      }
-
-      if(window.innerHeight < 720) {
-        centerY = canvas.height / 2 - 60;
       }
 
 
@@ -292,7 +310,7 @@ class Spectrum extends Component {
   render() {
     return (
       <>
-      <canvas className="canvas" ref={this.canvasRef} height="500" width="500"></canvas>
+      <canvas className="canvas" ref={this.canvasRef}></canvas>
       </>
     )
   }
