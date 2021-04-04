@@ -57,6 +57,8 @@ function PlayerTrack({ currentVolume, metadata, audioRef, timeUpdateHandler, han
             value={metadata.currentTime}
             onChange={dragHandler}
             onMouseUp={setPlayback}
+            // onMouseUp for mobile
+            onTouchEnd={setPlayback}
             type="range"
           />
 

@@ -261,7 +261,6 @@ class Spectrum extends Component {
       if(this.props.currentSong === undefined) return;
       // Line color
       // var lineColor = "rgb(" + currentSong.color[0] + ", " + 255 + ", " + 255 + ")";
-      // console.log(currentSong.color[0])
       if(typeof this.props.currentSong.color === "number") {
         const hue = i/5 + this.props.currentSong.color;
         ctx.strokeStyle = `hsl(${hue}, 100%, 40%)`;

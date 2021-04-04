@@ -68,7 +68,12 @@ function SongInfo({currentSong}) {
     <div className={StyledSongInfo.nameBox}>
         <div className={StyledSongInfo.currentlyPlaying}>Currently Playing</div>
         <div className={StyledSongInfo.underline}></div>
-        <h1 onMouseOver={handleMouseHover} className={StyledSongInfo.songName}>
+        <h1 
+        onMouseOver={handleMouseHover}
+        // on touch for mobile
+        onTouchStart={handleMouseHover}
+        className={StyledSongInfo.songName
+        }>
           <span 
           ref={firstNameRef} 
           className={`${StyledSongInfo.firstSpan} ${isAnimating ? StyledSongInfo.firstSpanAnim : "" }`}>

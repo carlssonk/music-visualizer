@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import SongInfo from "./components/song-info/SongInfo"
 import Aside from "./components/aside/Aside"
 import Player from "./components/player/Player"
-import Spectrum from "./components/effects/Spectrum"
+import Spectrum from "./components/Spectrum"
 // Styling
 import StyledSongify from "./styles/Songify.module.scss"
 // Data
