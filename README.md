@@ -1,4 +1,4 @@
-# Emote-Racer
+# Music Visualizer
 
 ![App Screenshot](https://i.ibb.co/SXmpVNq/music-visualizer.jpg)
 
